@@ -1,0 +1,33 @@
+<style>
+.card 
+{
+  all: unset;
+  border-radius: 4px;
+  border: 1px solid #eee;
+  background-color: #fafafa;
+  height: 40px;
+  width: 200px;
+  margin: 0 8px 16px;
+  padding: 16px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s ease-in-out;
+  line-height: 24px;
+}
+</style><!--TODO: Get rid of this-->
+
+<mat-grid-list cols="4" rowHeight="300px">
+  <mat-grid-tile class="pokemon-list-item hover-popup-shadow"
+      *ngFor="let mon of pokemonItems | async"
+      [colspan]="1"
+      [rowspan]="1">
+      <mat-grid-tile-footer>{{mon.name | titlecase}}</mat-grid-tile-footer>
+  </mat-grid-tile>
+</mat-grid-list>
+<div class="flex-spacer"></div>
+<span>
+  <a mat-button (click)="getPrevPage()" href="#" *ngIf="hasPrevPage()">Previous</a>
+  <a mat-button (click)="getNextPage()" href="#" *ngIf="hasNextPage()">Next</a>
+</span>

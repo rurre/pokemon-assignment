@@ -1,0 +1,15 @@
+<mat-toolbar>
+    <span>Pokemon</span>
+    <nav>
+        <a mat-button class="mat-focus-indicator" href="#">Home</a>
+        <a mat-button href="#">Details</a>
+        <span *ngIf="isAdmin">
+            <a mat-button href="#">Create Product</a>
+            <a mat-button href="#">Pokemon List</a>
+        </span>
+    </nav>
+    <div class="flex-spacer"></div>
+    <span>
+        <input matInput aria-label="search">
+    </span>        
+</mat-toolbar>
