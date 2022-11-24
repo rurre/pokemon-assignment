@@ -40,6 +40,12 @@ export class PokemonApiService
   getPrevPage(count: number)
   {
     this._nextOffset = Math.max(this._nextOffset - count, 0);
-    return this._getPokemonList(count, this._nextOffset - 30);
+    return this._getPokemonList(count, this._nextOffset - environment.pokemonPerListPage);
+  }
+
+  getFirstPage(count: number)
+  {
+    this._nextOffset = count;
+    return this._getPokemonList(count, 0);
   }
 }

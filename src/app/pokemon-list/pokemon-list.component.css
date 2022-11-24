@@ -1,4 +1,16 @@
+.pokemon-list
+{
+  padding-bottom: 50px;
+}
+
 .pokemon-list-item:hover
 {
   cursor: pointer
+}
+
+.list-nav-buttons
+{
+  padding-top: 20px;
+  padding-bottom: 20px;
+  float: right;
 }

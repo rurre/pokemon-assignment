@@ -1,1 +1,11 @@
-<p>search works!</p>
+<form>        
+  <mat-form-field class="search-bar">
+    <input matInput type="text" [formControl]="searchFormControl" [(ngModel)]="value">
+    <button matSuffix type="button" mat-icon-button aria-label="Search" (click)="doSearch()">
+      <mat-icon>search</mat-icon>
+    </button>
+    <mat-error *ngIf="searchFormControl.hasError('minlength')">
+      At least 3 characters required
+    </mat-error>
+  </mat-form-field>
+</form>

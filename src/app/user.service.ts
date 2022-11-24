@@ -5,14 +5,33 @@ import { Injectable } from "@angular/core";
 })
 export class UserService 
 {  
-
-  get IsAdmin(): boolean
-  {
-    return true;
-  }
+  private _isAdmin = true;
+  private _isLoggedIn = false;
 
   constructor() 
   {
     
+  }
+
+  get isAdmin(): boolean
+  {
+    return this._isAdmin;
+  }
+
+  get isLoggedIn(): boolean
+  {
+    return this._isLoggedIn;
+  }
+
+  login()
+  {
+    if(!this._isLoggedIn)
+      this._isLoggedIn = true;
+  }
+
+  logOut()
+  {
+    if(this._isLoggedIn)
+      this._isLoggedIn = false;
   }
 }

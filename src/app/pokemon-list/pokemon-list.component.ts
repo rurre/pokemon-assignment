@@ -1,6 +1,7 @@
+import { environment } from './../../environments/environment';
 import { PokemonListResponse } from './../pokemon-list-response';
 import { PokemonListItem } from './../pokemon-list-item';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable, Observer, BehaviorSubject } from 'rxjs';
 import { PokemonApiService } from './../pokemon-api.service';
 import { Component, OnInit, Input } from '@angular/core';
 
@@ -11,16 +12,25 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class PokemonListComponent implements OnInit 
 {
-  private _itemsPerPage: number = 30;
   private _pokemonItemsSubject: BehaviorSubject<PokemonListItem[]> = new BehaviorSubject<PokemonListItem[]>([]);
   pokemonItems: Observable<PokemonListItem[]> = this._pokemonItemsSubject.asObservable();
+
+  private _hasListLoadedSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  hasListLoaded: Observable<boolean> = this._hasListLoadedSubject.asObservable();
 
   private _hasNextPage: boolean = false;
   private _hasPrevPage: boolean = false;
   
   hasNextPage(): boolean { return this._hasNextPage; };
   hasPrevPage(): boolean { return this._hasPrevPage; };
-    
+  
+  reponseObserver: Observer<PokemonListResponse> = 
+  {
+    next: (val) => {this._handleResponse(this, val);},
+    error: console.error,
+    complete: () => {this._hasListLoadedSubject.next(true);}
+  };
+
   constructor(private _pokemonApiService: PokemonApiService) 
   {
     
@@ -28,56 +38,35 @@ export class PokemonListComponent implements OnInit
 
   ngOnInit(): void 
   {
-    this.getNextPage();
+    this.getFirstPage();
   }
 
   private _handleResponse(instance:PokemonListComponent, response: PokemonListResponse)
   {
-    instance._pokemonItemsSubject.next(response.results);
-    instance._hasNextPage = response.next != null;
+    instance._hasListLoadedSubject.next(false);
+    instance._pokemonItemsSubject.next(
+      response.results.map(res => 
+        new PokemonListItem(res.name, res.url, "https://placekitten.com/400/400")));
+
+      instance._hasNextPage = response.next != null;
     instance._hasPrevPage = response.previous != null;
+  }
+
+  getFirstPage()
+  {
+    this._pokemonApiService.getFirstPage(environment.pokemonPerListPage)
+      .subscribe(this.reponseObserver);      
   }
 
   getNextPage()
   {
-    this._pokemonApiService.getNextPage(this._itemsPerPage)
-      .subscribe({next:(val) => this._handleResponse(this, val)});
+    this._pokemonApiService.getNextPage(environment.pokemonPerListPage)
+      .subscribe(this.reponseObserver);
   }
 
   getPrevPage()
   {
-    this._pokemonApiService.getPrevPage(this._itemsPerPage)
-      .subscribe({next:(val) => this._handleResponse(this, val)});
-  }
-
-/*
-  getNextPage(count: number = 30)
-  {
-    this.nextOffset = this.nextOffset + count;
-    this._getListItems(count);
-  }
-
-  getPrevPage(count: number = 30)
-  {
-    this.nextOffset = Math.max(this.nextOffset - count, 0);
-    this._getListItems(count);
-  }
-
-  private _getListItems(count: number)
-  {
-    return this._pokemonApiService._getPokemonList(count, this.nextOffset)
-      .subscribe({next: (response) => { this.pokemonItems = response.results; }})
-  }
-*/
-
-  //TODO: Check if this is still needed
-  private getIntParam(url: URL, paramName: string): number | null
-  {
-    if(url == null)
-      return null;
-    
-    let param = url.searchParams.get(paramName);    
-    return param != null ? Number.
-    parseInt(param) : null;
+    this._pokemonApiService.getPrevPage(environment.pokemonPerListPage)
+      .subscribe(this.reponseObserver);
   }
 }

@@ -1,15 +1,19 @@
-<mat-toolbar>
-    <span>Pokemon</span>
+<mat-toolbar class="header-toolbar">
+    <span id="title-text">Pokemon</span>
     <nav>
-        <a mat-button class="mat-focus-indicator" href="#">Home</a>
-        <a mat-button href="#">Details</a>
-        <span *ngIf="isAdmin">
-            <a mat-button href="#">Create Product</a>
-            <a mat-button href="#">Pokemon List</a>
+        <button mat-button routerLink="/home" routerLinkActive="mat-accent">Home</button>
+        <button mat-button routerLink="/detail" routerLinkActive="mat-accent">Detail</button>
+        <span *ngIf="isLoggedIn && isAdmin">
+            <a mat-button router-link="/create-product" routerLinkActive="mat-accent">Create Product</a>
+            <a mat-button router-link="/product-list" routerLinkActive="mat-accent">Product List</a>
         </span>
     </nav>
-    <div class="flex-spacer"></div>
-    <span>
-        <input matInput aria-label="search">
-    </span>        
+    <span class="flex-spacer"></span>
+    <ng-template [ngIf]="!isLoggedIn" [ngIfElse]="loggedIn">
+        <a mat-button (click)="logIn()">Log In</a>
+    </ng-template>
+    <ng-template #loggedIn>
+        <a mat-button (click)="logOut()">Log Out</a>
+    </ng-template>
+    <app-search></app-search>    
 </mat-toolbar>
