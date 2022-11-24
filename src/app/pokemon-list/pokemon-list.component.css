@@ -3,6 +3,14 @@
   padding-bottom: 50px;
 }
 
+.pokemon-list-item
+{
+  border-radius: 5px;
+  border: 2px;
+  border-color: lightgray;
+  border-style: solid;
+}
+
 .pokemon-list-item:hover
 {
   cursor: pointer

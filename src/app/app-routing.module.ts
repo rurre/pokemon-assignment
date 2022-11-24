@@ -7,10 +7,11 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {path: '', redirectTo: "home", pathMatch: "full"},
-  {path: 'home', component: PokemonListComponent },
-  {path: 'detail', component: PokemonDetailsComponent},
+  {path: 'home', component: PokemonListComponent, title: "Home" },
+  {path: 'detail', component: PokemonDetailsComponent, title: "Details"},
+  {path: 'detail/:name', component: PokemonDetailsComponent, title: "Details"},
 
-  {path: 'not-found', component: PageNotFoundComponent},
+  {path: 'not-found', component: PageNotFoundComponent, title: "Not Found"},
   {path: '**', redirectTo: "not-found", pathMatch: "full" },
 ];
 

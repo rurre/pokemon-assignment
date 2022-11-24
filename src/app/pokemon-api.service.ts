@@ -1,3 +1,4 @@
+import { IPokemonDetail } from './ipokemon-detail';
 import { PokemonListResponse } from './pokemon-list-response';
 import { PokemonListItem } from './pokemon-list-item';
 import { environment } from './../environments/environment';
@@ -28,6 +29,16 @@ export class PokemonApiService
       offset: offset
     }
     return this._httpClient.get<PokemonListResponse>(`${environment.pokemonApiBase}/pokemon/`, {params:new HttpParams().appendAll(params)});
+  }
+
+  getPokemonDetailFromName(name: string): Observable<IPokemonDetail>
+  {
+    return this._httpClient.get<IPokemonDetail>(`${environment.pokemonApiBase}/pokemon/${name.toLowerCase()}`);
+  }
+
+  getPokemonDetailFromUrl(detailUrl: string): Observable<IPokemonDetail>
+  {
+    return this._httpClient.get<IPokemonDetail>(detailUrl);
   }
 
   getNextPage(count: number)

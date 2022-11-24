@@ -15,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { PokemonDetailsComponent } from './pokemon-details/pokemon-details.component';
+import { PokemonDamageComponent } from './pokemon-damage/pokemon-damage.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { PokemonDetailsComponent } from './pokemon-details/pokemon-details.compo
     PokemonEvolutionComponent,
     routingComponents,
     PageNotFoundComponent,
-    PokemonDetailsComponent
+    PokemonDetailsComponent,
+    PokemonDamageComponent
   ],
   imports: [
     BrowserModule,

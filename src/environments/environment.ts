@@ -6,7 +6,7 @@ export const environment =
 {
   production: false,  
   pokemonApiBase: "https://pokeapi.co/api/v2",
-  pokemonPerListPage: 28
+  pokemonPerListPage: 28,
 };
 
 /*
