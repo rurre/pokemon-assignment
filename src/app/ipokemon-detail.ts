@@ -1,3 +1,5 @@
+import { map } from 'rxjs/operators';
+
 export interface IPokemonAbility 
 {
   ability:
@@ -88,8 +90,8 @@ export interface IPokemonSprites
     }
     official_artwork:
     {
-      front_default: string;
-    }
+      front_default: string;      
+    }    
   }
 }
 

@@ -1,11 +1,9 @@
 import { IPokemonDetail } from './ipokemon-detail';
 import { PokemonListResponse } from './pokemon-list-response';
-import { PokemonListItem } from './pokemon-list-item';
 import { environment } from './../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'

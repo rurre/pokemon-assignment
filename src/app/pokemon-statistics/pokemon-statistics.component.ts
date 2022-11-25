@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 import { Input } from '@angular/core';
 import { getPokemonTypeColor, IPokemonDetail, IPokemonType } from './../ipokemon-detail';
 import { Component, OnInit } from '@angular/core';
@@ -9,12 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PokemonStatisticsComponent implements OnInit 
 {
-  @Input("pokemonDetails") details!: IPokemonDetail | null
+  @Input("pokemonDetails") details!: IPokemonDetail | null;
 
-  constructor() { }
+  constructor(private _activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void 
   {
+    
   }  
 
   getTypeColor(type: IPokemonType): string

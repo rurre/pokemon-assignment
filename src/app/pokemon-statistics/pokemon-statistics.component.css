@@ -2,3 +2,33 @@
 {
   margin-left: 12px;
 }
+
+#pokemon-nr
+{
+  float : right;
+}
+
+#stats-image-container
+{
+  display: flex;
+}
+
+#pokemon-image-container
+{
+  flex : 0 0 15%;
+}
+
+#pokemon-image
+{
+  width: 100%;
+}
+
+#pokemon-stats
+{
+  flex: 1;
+}
+
+#type-chip-list
+{
+  margin-bottom: 15px;
+}

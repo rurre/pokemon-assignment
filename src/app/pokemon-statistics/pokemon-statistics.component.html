@@ -1,30 +1,35 @@
 <div *ngIf="details">
   <mat-card>
     <mat-card-header>
-      <mat-card-title>{{details.name | titlecase}}</mat-card-title>
-      <mat-card-subtitle>{{details.types[0].type.name | titlecase}} Pokemon</mat-card-subtitle>
+      <mat-card-title>
+        {{details.name | titlecase}}        
+      </mat-card-title>
+      <div class="flex-spacer"></div>
+      <h2 id="pokemon-nr">#{{details.id}}</h2>      
     </mat-card-header>
     <mat-card-content class="pokemon-type-content">
-      <span class="pokemon-image">
-        <img src="{{details.sprites.front_default}}">
-      </span>
-      <span class="pokemon-stats">
-        <div>
-          <mat-chip-list>
-            <mat-chip *ngFor="let type of details.types" [ngStyle]="{'color':'whitesmoke', 'background-color': '#' + getTypeColor(type)}">
-              {{type.type.name | titlecase}}
-            </mat-chip>
-          </mat-chip-list>
+      <div id="stats-image-container">
+        <div id="pokemon-image-container">
+          <img id="pokemon-image" src="{{details.sprites.front_default}}">
         </div>
-        <div>
-          <p>Health</p>
-          <p>Attack</p>
-          <p>Defense</p>
-          <p>Speed</p>
-          <p>Sp Atk</p>
-          <p>Sp Def</p>
+        <div id="pokemon-stats">
+          <div id="type-chip-list">
+            <mat-chip-list>
+              <mat-chip *ngFor="let type of details.types" [ngStyle]="{'color':'whitesmoke', 'background-color': '#' + getTypeColor(type)}">
+                {{type.type.name | titlecase}}
+              </mat-chip>
+            </mat-chip-list>
+          </div>
+          <div>
+            <p>Health</p>
+            <p>Attack</p>
+            <p>Defense</p>
+            <p>Speed</p>
+            <p>Sp Atk</p>
+            <p>Sp Def</p>
+          </div>
         </div>
-      </span>
+      </div>
     </mat-card-content>
   </mat-card>
   <ng-template #detailsAreNull>

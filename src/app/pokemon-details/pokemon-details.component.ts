@@ -1,6 +1,6 @@
 import { Observable, Subject, BehaviorSubject } from 'rxjs';
 import { PokemonApiService } from './../pokemon-api.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { getPokemonTypeColorByName, IPokemonDetail, IPokemonType } from './../ipokemon-detail';
