@@ -11,7 +11,7 @@ import { map } from 'rxjs/operators';
   templateUrl: './pokemon-list.component.html',
   styleUrls: ['./pokemon-list.component.css']
 })
-export class PokemonListComponent implements OnInit 
+export class PokemonListComponent implements OnInit
 {
   private _pokemonItemsSubject: BehaviorSubject<PokemonListItem[]> = new BehaviorSubject<PokemonListItem[]>([]);
   pokemonItems: Observable<PokemonListItem[]> = this._pokemonItemsSubject.asObservable();
@@ -41,8 +41,8 @@ export class PokemonListComponent implements OnInit
 
   private _handleResponse(instance:PokemonListComponent, response: PokemonListResponse)
   {    
-    instance._isListLoadingSubject.next(true);    
-    instance._pokemonItemsSubject.next(
+    instance._isListLoadingSubject.next(true);
+      instance._pokemonItemsSubject.next(
       response.results.map((res) => 
         {
           this._isListLoadingSubject.next(false);

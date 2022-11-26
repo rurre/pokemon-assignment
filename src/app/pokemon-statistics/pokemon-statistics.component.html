@@ -1,34 +1,41 @@
-<div *ngIf="details">
+<div *ngIf="(pageLoaded | async)">
   <mat-card>
     <mat-card-header>
-      <mat-card-title>
+      <mat-card-title id="pokemon-title">
         {{details.name | titlecase}}        
       </mat-card-title>
       <div class="flex-spacer"></div>
-      <h2 id="pokemon-nr">#{{details.id}}</h2>      
+      <h2 id="pokemon-nr">#{{details.id}}</h2>
     </mat-card-header>
     <mat-card-content class="pokemon-type-content">
       <div id="stats-image-container">
         <div id="pokemon-image-container">
           <img id="pokemon-image" src="{{details.sprites.front_default}}">
         </div>
-        <div id="pokemon-stats">
+        <div id="pokemon-stats-container">
           <div id="type-chip-list">
             <mat-chip-list>
               <mat-chip *ngFor="let type of details.types" [ngStyle]="{'color':'whitesmoke', 'background-color': '#' + getTypeColor(type)}">
-                {{type.type.name | titlecase}}
+                {{type.type.name | titlecase}}                                
               </mat-chip>
             </mat-chip-list>
           </div>
-          <div>
-            <p>Health</p>
-            <p>Attack</p>
-            <p>Defense</p>
-            <p>Speed</p>
-            <p>Sp Atk</p>
-            <p>Sp Def</p>
-          </div>
+          <table id="stats-table">            
+            <tr *ngFor="let stat of getSimpleStats(details.stats)">
+              <td class="stat-label-cell">
+                <h2 class="stat-label">{{stat.name | titlecase}}</h2>
+              </td>
+              <td class="stat-progress-bar-cell">
+                <h3 class="stat-progress-bar-value">{{stat.value}}</h3>
+                <mat-progress-bar class="stat-progress-bar" mode="determinate" value="{{stat.value}}"></mat-progress-bar>
+              </td>
+            </tr>            
+          </table>          
         </div>
+      </div>
+      <div>
+        <h4><b>{{typeText | async}}</b></h4>
+        <p>{{flavorText | async}}</p>
       </div>
     </mat-card-content>
   </mat-card>
@@ -36,24 +43,3 @@
     <p>Details are null for some reason</p>
   </ng-template>
   </div>
-  <!--
-  <mat-card class="example-card">
-    <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>Shiba Inu</mat-card-title>
-      <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-    </mat-card-header>
-    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-    <mat-card-content>
-      <p>
-        The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-        A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-        bred for hunting.
-      </p>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-button>LIKE</button>
-      <button mat-button>SHARE</button>
-    </mat-card-actions>
-  </mat-card>
-  -->

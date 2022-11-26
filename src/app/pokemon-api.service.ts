@@ -1,4 +1,4 @@
-import { IPokemonDetail } from './ipokemon-detail';
+import { IPokemonDetail, IPokemonSpecies } from './ipokemon-detail';
 import { PokemonListResponse } from './pokemon-list-response';
 import { environment } from './../environments/environment';
 import { Injectable } from '@angular/core';
@@ -37,6 +37,11 @@ export class PokemonApiService
   getPokemonDetailFromUrl(detailUrl: string): Observable<IPokemonDetail>
   {
     return this._httpClient.get<IPokemonDetail>(detailUrl);
+  }
+
+  getPokemonSpeciesFromUrl(url: string): Observable<IPokemonSpecies>
+  {
+    return this._httpClient.get<IPokemonSpecies>(url);
   }
 
   getNextPage(count: number)
