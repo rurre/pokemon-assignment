@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Input } from '@angular/core';
 import { getPokemonTypeColor, IPokemonDetail, IPokemonType, IPokemonStat, IPokemonSpecies } from './../ipokemon-detail';
 import { Component, OnInit } from '@angular/core';
-import { forkJoin, Observable, BehaviorSubject } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 
 const loading = "Loading...";
 
@@ -35,7 +35,7 @@ export class PokemonStatisticsComponent implements OnInit
     this.detailsObs.subscribe((details) => 
     {
       this.details = details;
-      this.speciesObs = this._pokemonApiService.getPokemonSpeciesFromUrl(details.species.url);
+      this.speciesObs = this._pokemonApiService.getPokemonDataFromUrl<IPokemonSpecies>(details.species.url);
       this.speciesObs.subscribe(() => 
       {
         this.getFlavorText();
@@ -75,10 +75,9 @@ export class PokemonStatisticsComponent implements OnInit
         let engFlavors = species.flavor_text_entries
           .filter(x => x.language.name === "en");
 
-        console.log(engFlavors);
-        
         let randomFlavor = engFlavors[Math.floor(Math.random() * engFlavors.length)];
-        this._flavorTextSubject.next(randomFlavor.flavor_text);
+        this._flavorTextSubject.next(
+          randomFlavor.flavor_text.replace("", "\n")); // Some flavor text has a form feed character
       });
   }
 }

@@ -1,3 +1,4 @@
+import { IPokemonDetail } from './../ipokemon-detail';
 import { environment } from './../../environments/environment';
 import { PokemonListResponse } from './../pokemon-list-response';
 import { PokemonListItem } from './../pokemon-list-item';
@@ -47,7 +48,7 @@ export class PokemonListComponent implements OnInit
         {
           this._isListLoadingSubject.next(false);
           let item = new PokemonListItem(res.name, res.url);          
-          instance._pokemonApiService.getPokemonDetailFromUrl(res.url)
+          instance._pokemonApiService.getPokemonDataFromUrl<IPokemonDetail>(res.url)
             .pipe(map(detail => detail.sprites.front_default))
             .subscribe({next:(url) => item.imageUrl = url})
           return item;
