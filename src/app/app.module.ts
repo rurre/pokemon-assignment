@@ -16,6 +16,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { PokemonDetailsComponent } from './pokemon-details/pokemon-details.component';
 import { PokemonDamageComponent } from './pokemon-damage/pokemon-damage.component';
+import { CreateProductComponent } from './create-product/create-product.component';
+import { ProductListComponent } from './product-list/product-list.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { PokemonDamageComponent } from './pokemon-damage/pokemon-damage.componen
     routingComponents,
     PageNotFoundComponent,
     PokemonDetailsComponent,
-    PokemonDamageComponent
+    PokemonDamageComponent,
+    CreateProductComponent,
+    ProductListComponent
   ],
   imports: [
     BrowserModule,

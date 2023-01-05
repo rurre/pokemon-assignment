@@ -4,13 +4,14 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { getPokemonTypeColorByName, IPokemonDetail, IPokemonType } from './../ipokemon-detail';
+import { trigger, transition, style, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-pokemon-details',
   templateUrl: './pokemon-details.component.html',
   styleUrls: ['./pokemon-details.component.css']
 })
-export class PokemonDetailsComponent implements OnInit 
+export class PokemonDetailsComponent implements OnInit
 {
   private _pokemonSubject: Subject<IPokemonDetail> = new Subject();
   pokemonDetail: Observable<IPokemonDetail> = this._pokemonSubject.asObservable();
@@ -20,12 +21,12 @@ export class PokemonDetailsComponent implements OnInit
   
   constructor(private _pokemonApiService: PokemonApiService, private _activatedRoute: ActivatedRoute, private _router: Router) { }
 
-  ngOnInit(): void 
+  ngOnInit(): void
   {
     this._activatedRoute.paramMap.subscribe(
       {
-        next: (params:ParamMap) => 
-        { 
+        next: (params:ParamMap) =>
+        {
           let name = params.get("name");
           if(name == null)
           {
@@ -37,20 +38,20 @@ export class PokemonDetailsComponent implements OnInit
             .subscribe(
             {
               next: (detail) => { this._pokemonSubject.next(detail); },
-              error: (err:HttpErrorResponse) => 
+              error: (err:HttpErrorResponse) =>
               {
                 if(err.status == 404)
                   this._errorMessageSubject.next(`Pokemon ${name} not found.`)
-                else  
-                  this._errorMessageSubject.next(err.message); 
+                else
+                  this._errorMessageSubject.next(err.message);
               }
-            });                   
+            });
         }
       });
   }
 
   getTypeColorFromDetail(detail: IPokemonDetail | null): string
-  {    
+  {
     let empty = "000000";
     if(detail)
       return getPokemonTypeColorByName(detail.types[0].type.name) || empty;

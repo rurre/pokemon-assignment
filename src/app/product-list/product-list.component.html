@@ -1,0 +1,20 @@
+<mat-grid-list class="product-list" cols="7" rowHeight="1:1" gutterSize="10px">
+  <mat-grid-tile *ngFor="let product of products"
+    class="product-list-item hover-popup-shadow"
+    colspan="1"
+    rowspan="1">
+    
+    <img *ngIf="product.imageUrl != null;else loadingImage" alt="product image" class="product-image" src="{{product.imageUrl}}"/>
+    <ng-template #loadingImage>
+      <mat-progress-spinner
+        color="accent"
+        mode="indeterminate">
+      </mat-progress-spinner>
+    </ng-template>
+    <mat-grid-tile-footer color="accent">
+      <span>{{product.name | titlecase}}</span>
+      <span class="flex-spacer"></span>
+      <span>${{product.price}}</span>
+    </mat-grid-tile-footer>
+  </mat-grid-tile>
+</mat-grid-list>

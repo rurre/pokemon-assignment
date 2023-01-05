@@ -6,7 +6,7 @@
     <div id="evolve-images-container">
       <img class="evolution-image" src="{{details.sprites.front_default}}">
       <mat-icon class="evolution-image" [ngStyle]="{'color' : '#' + getTypeColor()}">keyboard_arrow_right</mat-icon>
-      <img class="evolution-image" src="{{(evolutionInfo | async)!.evolvesIntoImageUrl}}">            
+      <img class="evolution-image" src="{{(evolutionInfo | async)!.evolvesIntoImageUrl}}">
       <p>{{details.name | titlecase}} evolves into {{(evolutionInfo | async)!.evolvesInto | titlecase}} <b>at level {{(evolutionInfo | async)!.evolvesAtLevel}}</b></p>
     </div>
   </mat-card-content>

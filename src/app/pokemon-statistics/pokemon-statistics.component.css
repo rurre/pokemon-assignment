@@ -58,16 +58,23 @@
   width:100%
 }
 
-.stat-progress-bar
-{  
-  height: 25px;  
-  margin-left: 20px;
-}
-
 .stat-progress-bar-value
 {
   position: absolute;
   margin: 0 0 0 30px;
   z-index: 1;
   color: whitesmoke;
+}
+
+.stat-progress-bar-background
+{
+  height: 25px;
+  margin-left: 20px;
+  background-color: whitesmoke;
+}
+
+.stat-progress-bar-foreground
+{
+  height: 100%;
+  border-radius: 6px;
 }

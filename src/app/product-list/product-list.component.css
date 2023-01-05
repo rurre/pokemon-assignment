@@ -1,9 +1,9 @@
-.pokemon-list
+.product-list
 {
   padding-bottom: 50px;
 }
 
-.pokemon-list-item
+.product-list-item
 {
   border-radius: 5px;
   border: 2px;
@@ -12,14 +12,12 @@
   background-color: azure;
 }
 
-.pokemon-list-item:hover
+.product-list-item:hover
 {
   cursor: pointer
 }
 
-.list-nav-buttons
+.product-image
 {
-  padding-top: 20px;
-  padding-bottom: 20px;
-  float: right;
+  height: 100%;
 }

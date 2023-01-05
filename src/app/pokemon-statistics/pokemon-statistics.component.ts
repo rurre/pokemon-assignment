@@ -12,7 +12,7 @@ const loading = "Loading...";
   templateUrl: './pokemon-statistics.component.html',
   styleUrls: ['./pokemon-statistics.component.css']
 })
-export class PokemonStatisticsComponent implements OnInit 
+export class PokemonStatisticsComponent implements OnInit
 {
   @Input("pokemonDetails") detailsObs!: Observable<IPokemonDetail>;
   details!: IPokemonDetail;
@@ -30,30 +30,35 @@ export class PokemonStatisticsComponent implements OnInit
 
   constructor(private _activatedRoute: ActivatedRoute, private _pokemonApiService: PokemonApiService) { }
 
-  ngOnInit(): void 
-  { 
-    this.detailsObs.subscribe((details) => 
+  ngOnInit(): void
+  {
+    this.detailsObs.subscribe((details) =>
     {
       this.details = details;
       this.speciesObs = this._pokemonApiService.getPokemonDataFromUrl<IPokemonSpecies>(details.species.url);
-      this.speciesObs.subscribe(() => 
+      this.speciesObs.subscribe(() =>
       {
         this.getFlavorText();
         this.getSpeciesText();
         this._pageLoadedSubject.next(true);
-      });      
-    });    
-  }  
+      });
+    });
+  }
+
+  getMainTypeColor(): string
+  {
+    return getPokemonTypeColor(this.details?.types[0]) ?? "00000";
+  }
 
   getTypeColor(type: IPokemonType): string
-  {    
+  {
     return getPokemonTypeColor(type) || "00000";
   }
   
   getSimpleStats(statObjects: IPokemonStat[]): {name: string, value: number}[]
   {
     let finalStats = [];
-    for(let stat of statObjects)    
+    for(let stat of statObjects)
       finalStats.push({name: stat.stat.name, value: stat.base_stat});
     
     return finalStats;
@@ -64,13 +69,13 @@ export class PokemonStatisticsComponent implements OnInit
     this.speciesObs.subscribe((species) =>
     {
       let text = species.genera.filter(x => x.language.name === "en")[0];
-      this._typeTextSubject.next(text.genus); 
+      this._typeTextSubject.next(text.genus);
     });
   }
 
   getFlavorText(): void
   {
-    this.speciesObs.subscribe((species) => 
+    this.speciesObs.subscribe((species) =>
       {
         let engFlavors = species.flavor_text_entries
           .filter(x => x.language.name === "en");
@@ -79,5 +84,10 @@ export class PokemonStatisticsComponent implements OnInit
         this._flavorTextSubject.next(
           randomFlavor.flavor_text.replace("", "\n")); // Some flavor text has a form feed character
       });
+  }
+
+  getProgressBarWidth(val: number): string
+  {
+    return Math.min(Math.max(val, 0), 100) + '%';
   }
 }

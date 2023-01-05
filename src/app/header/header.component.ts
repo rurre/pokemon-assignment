@@ -1,3 +1,5 @@
+import { ProductStorageService } from './../product-storage.service';
+import { CanNavigateToProductsService } from './../can-navigate-to-products.service';
 import { UserService } from './../user.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -6,13 +8,13 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit 
+export class HeaderComponent implements OnInit
 {
-  constructor(private _userService: UserService) 
+  constructor(private _userService: UserService, private _storage: ProductStorageService)
   {
   }
 
-  ngOnInit(): void 
+  ngOnInit(): void
   {
     
   }
@@ -35,5 +37,10 @@ export class HeaderComponent implements OnInit
   logOut()
   {
     this._userService.logOut();
+  }
+
+  get hasProducts(): boolean
+  {
+    return this._storage.hasProducts;
   }
 }

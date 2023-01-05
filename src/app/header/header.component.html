@@ -4,8 +4,8 @@
         <button mat-button routerLink="/home" routerLinkActive="mat-accent">Home</button>
         <button mat-button routerLink="/detail" routerLinkActive="mat-accent">Detail</button>
         <span *ngIf="isLoggedIn && isAdmin">
-            <button mat-button router-link="/create-product" routerLinkActive="mat-accent">Create Product</button>
-            <button mat-button router-link="/product-list" routerLinkActive="mat-accent">Product List</button>
+            <button mat-button routerLink="/create-product" routerLinkActive="mat-accent">Create Product</button>
+            <button mat-button routerLink="/product-list" routerLinkActive="mat-accent" [disabled]="!hasProducts">Product List</button>
         </span>
     </nav>
     <span class="flex-spacer"></span>
@@ -15,5 +15,5 @@
     <ng-template #loggedIn>
         <a mat-button (click)="logOut()">Log Out</a>
     </ng-template>
-    <app-search></app-search>    
+    <app-search></app-search>
 </mat-toolbar>

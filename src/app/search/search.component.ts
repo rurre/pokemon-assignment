@@ -31,7 +31,7 @@ export class SearchComponent implements OnInit
   }
 
   trySearch(): void
-  {    
+  {
     this.errorMsg = this.getErrorMessage();
     if(this.errorMsg)
       return;

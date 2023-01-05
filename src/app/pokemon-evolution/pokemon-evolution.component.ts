@@ -7,7 +7,7 @@ interface IEvolutionInfo
 {
   evolvesAtLevel: number;
   evolvesInto: string;
-  evolvesIntoImageUrl: string;    
+  evolvesIntoImageUrl: string;
 }
 
 @Component({
@@ -15,7 +15,7 @@ interface IEvolutionInfo
   templateUrl: './pokemon-evolution.component.html',
   styleUrls: ['./pokemon-evolution.component.css']
 })
-export class PokemonEvolutionComponent implements OnInit 
+export class PokemonEvolutionComponent implements OnInit
 {
   @Input("pokemonDetails") detailsObs!: Observable<IPokemonDetail>;
   details!: IPokemonDetail;
@@ -37,30 +37,30 @@ export class PokemonEvolutionComponent implements OnInit
   
   constructor(private _pokemonApiService: PokemonApiService) { }
 
-  ngOnInit(): void 
-  {    
-    this.detailsObs.subscribe((det) => 
-    { 
+  ngOnInit(): void
+  {
+    this.detailsObs.subscribe((det) =>
+    {
       this.details = det;
       
       this.speciesObs = this._pokemonApiService.getPokemonDataFromUrl<IPokemonSpecies>(this.details.species.url);
-      this.speciesObs.subscribe((spec) => 
+      this.speciesObs.subscribe((spec) =>
       {
         this.species = spec;
         this.evolutionObs = this._pokemonApiService.getPokemonDataFromUrl<IPokemonEvolution>(spec.evolution_chain.url);
-        this.evolutionObs.subscribe((evo) => 
+        this.evolutionObs.subscribe((evo) =>
         {
           this.evolution = evo;
-          this._pokemonApiService.getPokemonDataFromUrl<IPokemonSpecies>(evo.chain.evolves_to[0].species.url).subscribe(spec => 
+          this._pokemonApiService.getPokemonDataFromUrl<IPokemonSpecies>(evo.chain.evolves_to[0].species.url).subscribe(spec =>
             {
               this.evolvedPokemonDetailsObs = this._pokemonApiService.getPokemonDataFromUrl<IPokemonDetail>(spec.varieties[0].pokemon.url);
-              this.evolvedPokemonDetailsObs.subscribe(evoDetails => 
+              this.evolvedPokemonDetailsObs.subscribe(evoDetails =>
                 {
                   this.evolvedPokemonDetails = evoDetails;
                   this._evolutionInfoSubject.next(this._getEvolutionInfo());
                   this.componentLoadedSubject.next(true);
                 });
-            });      
+            });
         });
       });
     });
@@ -69,12 +69,12 @@ export class PokemonEvolutionComponent implements OnInit
   private _getEvolutionInfo()
   {
     let evolve = this.evolution.chain.evolves_to[0];
-    let info =     
+    let info =
     {
       evolvesInto: evolve.species.name,
       evolvesAtLevel: evolve.evolution_details[0].min_level,
       evolvesIntoImageUrl: this.evolvedPokemonDetails.sprites.front_default,
-    };    
+    };
     return info;
   }
 

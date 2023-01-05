@@ -8,11 +8,11 @@ import { Observable, BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class PokemonApiService 
+export class PokemonApiService
 {
   private _nextOffset: number = 0;
 
-  constructor(private _httpClient: HttpClient) 
+  constructor(private _httpClient: HttpClient)
   {
   }
 

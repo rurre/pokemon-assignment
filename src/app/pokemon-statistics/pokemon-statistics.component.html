@@ -2,7 +2,7 @@
   <mat-card>
     <mat-card-header>
       <mat-card-title id="pokemon-title">
-        {{details.name | titlecase}}        
+        {{details.name | titlecase}}
       </mat-card-title>
       <div class="flex-spacer"></div>
       <h2 id="pokemon-nr">#{{details.id}}</h2>
@@ -16,7 +16,7 @@
           <div id="type-chip-list">
             <mat-chip-list>
               <mat-chip *ngFor="let type of details.types" [ngStyle]="{'color':'whitesmoke', 'background-color': '#' + getTypeColor(type)}">
-                {{type.type.name | titlecase}}                                
+                {{type.type.name | titlecase}}
               </mat-chip>
             </mat-chip-list>
           </div>
@@ -27,10 +27,12 @@
               </td>
               <td class="stat-progress-bar-cell">
                 <h3 class="stat-progress-bar-value">{{stat.value}}</h3>
-                <mat-progress-bar class="stat-progress-bar" mode="determinate" value="{{stat.value}}"></mat-progress-bar>
+                <div class="stat-progress-bar-background">
+                  <div class="stat-progress-bar-foreground" [ngStyle]="{'background-color': '#' + getMainTypeColor(), 'width': getProgressBarWidth(stat.value)}"></div>
+                </div>
               </td>
-            </tr>            
-          </table>          
+            </tr>
+          </table>
         </div>
       </div>
       <div>
