@@ -1,6 +1,6 @@
 <form [formGroup]="mainForm">
-  <div formArrayName="products">
-    <div *ngFor="let child of productsArray['controls']; index as index" [formGroupName]=index>
+  <div id="product-forms" formArrayName="products">
+    <div class="pokemon-product" *ngFor="let child of productsArray['controls']; index as index" [formGroupName]=index>
       <mat-form-field>
         <input formControlName="name" matInput placeholder="Name">
       </mat-form-field>

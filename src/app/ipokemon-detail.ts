@@ -1,6 +1,6 @@
 import { map } from 'rxjs/operators';
 
-export interface IPokemonAbility 
+export interface IPokemonAbility
 {
   ability:
   {
@@ -35,16 +35,16 @@ export interface IPokemonHeldItem
 
 export interface IPokemonMove
 {
-  move: 
+  move:
   {
     name: string;
     url: string;
   }
-  version_group_details: 
+  version_group_details:
   [
     {
       level_learned_at: number;
-      move_learn_method: 
+      move_learn_method:
       {
         name: string;
         url: string;
@@ -72,17 +72,17 @@ export interface IPokemonSpecies
   hatch_counter: number;
   has_gender_differences: boolean;
   forms_switchable: boolean;
-  growth_rate: 
+  growth_rate:
   {
     name: string;
     url: string;
   };
 
-  pokedex_numbers: 
+  pokedex_numbers:
   [
     {
       entry_number: number;
-      pokedex: 
+      pokedex:
       {
         name: string;
         url: string;
@@ -90,7 +90,7 @@ export interface IPokemonSpecies
     }
   ];
 
-  egg_groups: 
+  egg_groups:
   [
     {
       name: string;
@@ -98,40 +98,40 @@ export interface IPokemonSpecies
     }
   ];
 
-  color: 
+  color:
   {
     name: string;
     url: string;
   };
 
-  shape: 
+  shape:
   {
     name: string;
     url: string;
   };
 
-  evolves_from_species: 
+  evolves_from_species:
   {
     name: string
     url: string;
   };
 
-  evolution_chain: 
+  evolution_chain:
   {
     url: string
   };
   habitat: any
-  generation: 
+  generation:
   {
     name: string;
     url: string;
   };
 
-  names: 
+  names:
   [
     {
       name: string;
-      language: 
+      language:
       {
         name: string;
         url: string;
@@ -139,17 +139,17 @@ export interface IPokemonSpecies
     }
   ]
 
-  flavor_text_entries: 
+  flavor_text_entries:
   [
     {
       flavor_text: string;
-      language: 
+      language:
       {
         name: string;
         url: string;
       };
 
-      version: 
+      version:
       {
         name: string;
         url: string;
@@ -161,29 +161,29 @@ export interface IPokemonSpecies
   [
     {
       description: string;
-      language: 
+      language:
       {
         name: string;
         url: string;
       }
     }
   ];
-  genera: 
+  genera:
   [
     {
       genus: string;
-      language: 
+      language:
       {
         name: string;
         url: string;
       }
     }
   ];
-  varieties: 
+  varieties:
   [
     {
       is_default: boolean;
-      pokemon: 
+      pokemon:
       {
         name: string;
         url: string;
@@ -207,7 +207,7 @@ export interface IPokemonSprites
     dream_world:
     {
       front_default: string | null;
-      front_famale: string | null;      
+      front_famale: string | null;
     }
     home:
     {
@@ -218,8 +218,8 @@ export interface IPokemonSprites
     }
     official_artwork:
     {
-      front_default: string;      
-    }    
+      front_default: string;
+    }
   }
 }
 
@@ -244,7 +244,7 @@ export interface IPokemonType
   }
 }
 
-export interface IPokemonDetail 
+export interface IPokemonDetail
 {
   abilities: IPokemonAbility[];
   base_experience: number;
@@ -259,8 +259,8 @@ export interface IPokemonDetail
   name: string;
   order: number;
   past_types: IPokemonType[];
-  species: 
-  { 
+  species:
+  {
     name:string;
     url: string
   };
@@ -273,12 +273,12 @@ export interface IPokemonDetail
 export interface IPokemonEvolution
 {
   baby_trigger_item: any;
-  chain: 
+  chain:
   {
     evolution_details: any[];
-    evolves_to: 
+    evolves_to:
     {
-      evolution_details: 
+      evolution_details:
       {
         gender: any;
         held_item: any;
@@ -296,7 +296,7 @@ export interface IPokemonEvolution
         relative_physical_stats: any;
         time_of_day: string;
         trade_species: any;
-        trigger: 
+        trigger:
         {
           name: string;
           url: string;
@@ -305,7 +305,7 @@ export interface IPokemonEvolution
 
       }[];
       is_baby: boolean;
-      species: 
+      species:
       {
         name: string;
         url: string;
@@ -321,7 +321,7 @@ export interface IPokemonEvolution
   id: number;
 }
 
-const typeColorHexCodes: Map<string,string> = new Map( 
+const typeColorHexCodes: Map<string,string> = new Map(
 [
   ["normal", "a8a878"],
   ["grass", "78c850"],
@@ -349,6 +349,6 @@ export function getPokemonTypeColorByName(typeName: string)
 }
 
 export function getPokemonTypeColor(type: IPokemonType)
-{  
+{
   return typeColorHexCodes.get(type.type.name);
 }

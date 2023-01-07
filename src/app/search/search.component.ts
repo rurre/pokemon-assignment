@@ -7,14 +7,14 @@ import {FormControl, Validators} from '@angular/forms';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
 })
-export class SearchComponent implements OnInit 
-{  
+export class SearchComponent implements OnInit
+{
   searchControl = new FormControl('', [Validators.minLength(3), Validators.pattern("^[A-Za-z]+")]);
   errorMsg: string = "";
 
-  constructor(private _router: Router) {} 
+  constructor(private _router: Router) {}
 
-  ngOnInit(): void 
+  ngOnInit(): void
   {
   }
 

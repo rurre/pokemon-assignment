@@ -26,7 +26,7 @@ export class PokemonListComponent implements OnInit
   hasNextPage(): boolean { return this._hasNextPage; };
   hasPrevPage(): boolean { return this._hasPrevPage; };
   
-  reponseObserver: Observer<PokemonListResponse> = 
+  reponseObserver: Observer<PokemonListResponse> =
   {
     next: (val) => { this._handleResponse(this, val); },
     error: console.error,
@@ -35,19 +35,19 @@ export class PokemonListComponent implements OnInit
 
   constructor(private _pokemonApiService: PokemonApiService) {}
 
-  ngOnInit(): void 
+  ngOnInit(): void
   {
     this.getFirstPage();
   }
 
   private _handleResponse(instance:PokemonListComponent, response: PokemonListResponse)
-  {    
+  {
     instance._isListLoadingSubject.next(true);
       instance._pokemonItemsSubject.next(
-      response.results.map((res) => 
+      response.results.map((res) =>
         {
           this._isListLoadingSubject.next(false);
-          let item = new PokemonListItem(res.name, res.url);          
+          let item = new PokemonListItem(res.name, res.url);
           instance._pokemonApiService.getPokemonDataFromUrl<IPokemonDetail>(res.url)
             .pipe(map(detail => detail.sprites.front_default))
             .subscribe({next:(url) => item.imageUrl = url})
@@ -60,13 +60,13 @@ export class PokemonListComponent implements OnInit
   getFirstPage()
   {
     this._pokemonApiService.getFirstPage(environment.pokemonPerListPage)
-      .subscribe(this.reponseObserver);      
+      .subscribe(this.reponseObserver);
   }
 
   getNextPage()
-  {   
+  {
     if(!this._hasNextPage)
-      return; 
+      return;
     this._pokemonApiService.getNextPage(environment.pokemonPerListPage)
       .subscribe(this.reponseObserver);
   }

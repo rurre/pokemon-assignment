@@ -3,7 +3,7 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
-.flex-spacer { flex: auto; } 
+.flex-spacer { flex: auto; }
 
 .hover-popup-shadow:hover
 {

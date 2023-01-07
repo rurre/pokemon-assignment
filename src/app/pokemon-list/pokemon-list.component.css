@@ -6,10 +6,10 @@
 .pokemon-list-item
 {
   border-radius: 5px;
-  border: 2px;
+  border: 1px;
   border-color: lightgray;
   border-style: solid;
-  background-color: azure;
+  background-color: rgb(245, 245, 245);
 }
 
 .pokemon-list-item:hover

@@ -56,7 +56,7 @@ export class CreateProductComponent implements OnInit
     {
       name: new FormControl(this.product?.name, [Validators.required, Validators.minLength(3), Validators.pattern(regexNumbersAndCharacters)]),
       description: new FormControl(this.product?.description, [Validators.required, Validators.minLength(3)]),
-      price: new FormControl(this.product?.price, [Validators.required]), //TODO: Add validation
+      price: new FormControl(this.product?.price, [Validators.required, Validators.pattern(regexNumbers)]),
       category: new FormControl(this.product?.category, [Validators.required]),
       imageUrl: new FormControl(this.product?.imageUrl, [Validators.required]),
       phoneNumber: new FormControl(this.product?.phoneNumber, [Validators.required, Validators.maxLength(10), Validators.pattern(regexNumbers)]),

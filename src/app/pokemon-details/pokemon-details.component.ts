@@ -3,7 +3,7 @@ import { PokemonApiService } from './../pokemon-api.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
-import { getPokemonTypeColorByName, IPokemonDetail, IPokemonType } from './../ipokemon-detail';
+import { getPokemonTypeColorByName, IPokemonDetail, IPokemonSpecies, IPokemonType } from './../ipokemon-detail';
 import { trigger, transition, style, animate } from '@angular/animations';
 
 @Component({
@@ -15,6 +15,9 @@ export class PokemonDetailsComponent implements OnInit
 {
   private _pokemonSubject: Subject<IPokemonDetail> = new Subject();
   pokemonDetail: Observable<IPokemonDetail> = this._pokemonSubject.asObservable();
+
+  private _speciesSubject: Subject<IPokemonSpecies> = new Subject();
+  pokemonSpecies: Observable<IPokemonSpecies> = this._speciesSubject.asObservable();
 
   private _errorMessageSubject: BehaviorSubject<string|null> = new BehaviorSubject<string|null>(null);
   errorMessage: Observable<string|null> = this._errorMessageSubject.asObservable();
@@ -37,7 +40,12 @@ export class PokemonDetailsComponent implements OnInit
           this._pokemonApiService.getPokemonDetailFromName(name)
             .subscribe(
             {
-              next: (detail) => { this._pokemonSubject.next(detail); },
+              next: (detail) =>
+              {
+                this._pokemonSubject.next(detail);
+                this._pokemonApiService.getPokemonDataFromUrl<IPokemonSpecies>(detail.species.url)
+                  .subscribe(spec => this._speciesSubject.next(spec));
+              },
               error: (err:HttpErrorResponse) =>
               {
                 if(err.status == 404)
@@ -52,9 +60,9 @@ export class PokemonDetailsComponent implements OnInit
 
   getTypeColorFromDetail(detail: IPokemonDetail | null): string
   {
-    let empty = "000000";
+    let empty = "#000000";
     if(detail)
-      return getPokemonTypeColorByName(detail.types[0].type.name) || empty;
+      return ('#' + getPokemonTypeColorByName(detail.types[0].type.name)) || empty;
     return empty;
   }
 }
