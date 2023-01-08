@@ -1,1 +1,35 @@
-<p>pokemon-evolution works!</p>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Evolutions</mat-card-title>
+  </mat-card-header>
+  <mat-card-content id="evolution-content" *ngIf="componentLoaded | async">
+    <div id="evolve-images-container">
+      <ng-container
+        *ngIf="(evolutionInfo | async) != null; else noMoreEvolutions"
+      >
+        <img
+          class="evolution-image"
+          src="{{ details.sprites.front_default }}"
+        />
+        <mat-icon class="evolution-image" [ngStyle]="{ color: getTypeColor() }"
+          >keyboard_arrow_right</mat-icon
+        >
+        <img
+          class="evolution-image"
+          src="{{ (evolutionInfo | async)!.evolvesIntoImageUrl }}"
+        />
+        <p>
+          {{ details.name | titlecase }} evolves into
+          {{ (evolutionInfo | async)!.evolvesInto | titlecase }}
+          <b>at level {{ (evolutionInfo | async)!.evolvesAtLevel }}</b>
+        </p>
+      </ng-container>
+    </div>
+  </mat-card-content>
+  <ng-template #noMoreEvolutions>
+    <div>
+      <img class="evolution-image" src="{{ details.sprites.front_default }}" />
+      <p>{{ details.name | titlecase }} has no futher evolutions.</p>
+    </div>
+  </ng-template>
+</mat-card>

@@ -1,0 +1,15 @@
+.pokemon-product {
+  margin-bottom: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
+  background-color: aliceblue;
+  border-style: solid;
+  border-radius: 10px;
+  border-width: 1px;
+  border-color: lightgray;
+  box-shadow: 10px;
+}
+
+mat-form-field {
+  padding-left: 10px;
+}

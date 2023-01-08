@@ -1,0 +1,59 @@
+<form [formGroup]="mainForm">
+  <div id="product-forms" formArrayName="products">
+    <div
+      class="pokemon-product"
+      *ngFor="let child of productsArray['controls']; index as index"
+      [formGroupName]="index"
+    >
+      <mat-form-field>
+        <input formControlName="name" matInput placeholder="Name" />
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          matInput
+          formControlName="description"
+          placeholder="Description"
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          matInput
+          formControlName="price"
+          placeholder="Amount"
+          type="number"
+        />
+        <span matPrefix>$&nbsp;</span>
+        <span matSuffix>.00</span>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-select formControlName="category" placeholder="Category">
+          <mat-option value="electronics">Electronics</mat-option>
+          <mat-option value="clothing">Clothing</mat-option>
+          <mat-option value="blankets">Blankets</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <input formControlName="imageUrl" matInput placeholder="Image URL" />
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          formControlName="phoneNumber"
+          matInput
+          placeholder="Phone number"
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-select formControlName="select" placeholder="Phone Type">
+          <mat-option value="mobile">Mobile</mat-option>
+          <mat-option value="landline">Landline</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <a mat-button (click)="removeFormAtIndex(index)">Delete</a>
+    </div>
+  </div>
+</form>
+<div class="list-nav-buttons">
+  <a mat-button (click)="resetForm()">Reset</a>
+  <a mat-button (click)="saveAll()" [disabled]="!formIsValid">Save All</a>
+  <a mat-button (click)="addForm()" [disabled]="!canAddForm">Add Form</a>
+</div>

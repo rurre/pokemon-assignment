@@ -1,0 +1,19 @@
+.product-list {
+  padding-bottom: 50px;
+}
+
+.product-list-item {
+  border-radius: 5px;
+  border: 2px;
+  border-color: lightgray;
+  border-style: solid;
+  background-color: azure;
+}
+
+.product-list-item:hover {
+  cursor: pointer;
+}
+
+.product-image {
+  height: 100%;
+}
