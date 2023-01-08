@@ -1,10 +1,8 @@
-.pokemon-list
-{
+.pokemon-list {
   padding-bottom: 50px;
 }
 
-.pokemon-list-item
-{
+.pokemon-list-item {
   border-radius: 5px;
   border: 1px;
   border-color: lightgray;
@@ -12,13 +10,11 @@
   background-color: rgb(245, 245, 245);
 }
 
-.pokemon-list-item:hover
-{
-  cursor: pointer
+.pokemon-list-item:hover {
+  cursor: pointer;
 }
 
-.list-nav-buttons
-{
+.list-nav-buttons {
   padding-top: 20px;
   padding-bottom: 20px;
   float: right;

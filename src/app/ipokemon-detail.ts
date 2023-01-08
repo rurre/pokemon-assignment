@@ -1,65 +1,51 @@
-import { map } from 'rxjs/operators';
-
-export interface IPokemonAbility
-{
-  ability:
-  {
+export interface IPokemonAbility {
+  ability: {
     name: string;
     url: string;
-  }
+  };
   is_hidden: boolean;
   slot: number;
 }
 
-export interface IPokemonForm
-{
+export interface IPokemonForm {
   name: string;
   url: string;
 }
 
-export interface IPokemonIndex
-{
+export interface IPokemonIndex {
   game_index: number;
-  version:
-  {
+  version: {
     name: string;
     url: string;
-  }
+  };
 }
 
-export interface IPokemonHeldItem
-{
+export interface IPokemonHeldItem {
   name: string;
   url: string;
 }
 
-export interface IPokemonMove
-{
-  move:
-  {
+export interface IPokemonMove {
+  move: {
     name: string;
     url: string;
-  }
-  version_group_details:
-  [
+  };
+  version_group_details: [
     {
       level_learned_at: number;
-      move_learn_method:
-      {
+      move_learn_method: {
         name: string;
         url: string;
-      }
-      version_group:
-      {
+      };
+      version_group: {
         name: string;
         url: string;
-      }
+      };
     }
-  ]
+  ];
 }
 
-export interface IPokemonSpecies
-{
+export interface IPokemonSpecies {
   id: number;
   name: string;
   order: number;
@@ -72,128 +58,107 @@ export interface IPokemonSpecies
   hatch_counter: number;
   has_gender_differences: boolean;
   forms_switchable: boolean;
-  growth_rate:
-  {
+  growth_rate: {
     name: string;
     url: string;
   };
 
-  pokedex_numbers:
-  [
+  pokedex_numbers: [
     {
       entry_number: number;
-      pokedex:
-      {
+      pokedex: {
         name: string;
         url: string;
-      }
+      };
     }
   ];
 
-  egg_groups:
-  [
+  egg_groups: [
     {
       name: string;
       url: string;
     }
   ];
 
-  color:
-  {
+  color: {
     name: string;
     url: string;
   };
 
-  shape:
-  {
+  shape: {
     name: string;
     url: string;
   };
 
-  evolves_from_species:
-  {
-    name: string
-    url: string;
-  };
-
-  evolution_chain:
-  {
-    url: string
-  };
-  habitat: any
-  generation:
-  {
+  evolves_from_species: {
     name: string;
     url: string;
   };
 
-  names:
-  [
+  evolution_chain: {
+    url: string;
+  };
+  habitat: any;
+  generation: {
+    name: string;
+    url: string;
+  };
+
+  names: [
     {
       name: string;
-      language:
-      {
+      language: {
         name: string;
         url: string;
-      }
+      };
     }
-  ]
+  ];
 
-  flavor_text_entries:
-  [
+  flavor_text_entries: [
     {
       flavor_text: string;
-      language:
-      {
+      language: {
         name: string;
         url: string;
       };
 
-      version:
-      {
+      version: {
         name: string;
         url: string;
-      }
+      };
     }
   ];
 
-  form_descriptions:
-  [
+  form_descriptions: [
     {
       description: string;
-      language:
-      {
+      language: {
         name: string;
         url: string;
-      }
+      };
     }
   ];
-  genera:
-  [
+  genera: [
     {
       genus: string;
-      language:
-      {
+      language: {
         name: string;
         url: string;
-      }
+      };
     }
   ];
-  varieties:
-  [
+  varieties: [
     {
       is_default: boolean;
-      pokemon:
-      {
+      pokemon: {
         name: string;
         url: string;
-      }
+      };
     }
-  ]
+  ];
 }
 
-export interface IPokemonSprites
-{
+export interface IPokemonSprites {
   back_default: string;
   back_female: string | null;
   back_shiny: string | null;
@@ -202,50 +167,41 @@ export interface IPokemonSprites
   front_female: string | null;
   front_shiny: string | null;
   front_shiny_female: string | null;
-  other:
-  {
-    dream_world:
-    {
+  other: {
+    dream_world: {
       front_default: string | null;
       front_famale: string | null;
-    }
-    home:
-    {
+    };
+    home: {
       front_default: string | null;
       front_female: string | null;
       front_shiny: string | null;
       front_shiny_female: string | null;
-    }
-    official_artwork:
-    {
+    };
+    official_artwork: {
       front_default: string;
-    }
-  }
+    };
+  };
 }
 
-export interface IPokemonStat
-{
+export interface IPokemonStat {
   base_stat: number;
   effort: number;
-  stat:
-  {
+  stat: {
     name: string;
     url: string;
-  }
+  };
 }
 
-export interface IPokemonType
-{
+export interface IPokemonType {
   slot: number;
-  type:
-  {
+  type: {
     name: string;
     url: string;
-  }
+  };
 }
 
-export interface IPokemonDetail
-{
+export interface IPokemonDetail {
   abilities: IPokemonAbility[];
   base_experience: number;
   forms: IPokemonForm[];
@@ -259,10 +215,9 @@ export interface IPokemonDetail
   name: string;
   order: number;
   past_types: IPokemonType[];
-  species:
-  {
-    name:string;
-    url: string
+  species: {
+    name: string;
+    url: string;
   };
   sprites: IPokemonSprites;
   stats: IPokemonStat[];
@@ -270,16 +225,12 @@ export interface IPokemonDetail
   weight: number;
 }
 
-export interface IPokemonEvolution
-{
+export interface IPokemonEvolution {
   baby_trigger_item: any;
-  chain:
-  {
+  chain: {
     evolution_details: any[];
-    evolves_to:
-    {
-      evolution_details:
-      {
+    evolves_to: {
+      evolution_details: {
         gender: any;
         held_item: any;
         item: any;
@@ -296,59 +247,52 @@ export interface IPokemonEvolution
         relative_physical_stats: any;
         time_of_day: string;
         trade_species: any;
-        trigger:
-        {
+        trigger: {
           name: string;
           url: string;
         };
         turn_upside_down: boolean;
-
       }[];
       is_baby: boolean;
-      species:
-      {
+      species: {
         name: string;
         url: string;
-      }
-    }[]
+      };
+    }[];
     is_baby: boolean;
-    species:
-    {
+    species: {
       name: string;
       url: string;
-    }
+    };
   };
   id: number;
 }
 
-const typeColorHexCodes: Map<string,string> = new Map(
-[
-  ["normal", "a8a878"],
-  ["grass", "78c850"],
-  ["ground", "e0c068"],
-  ["fighting", "c03028"],
-  ["rock", "b8a038"],
-  ["steel", "b8b8d0"],
-  ["fire", "f08030"],
-  ["electric", "f8d030"],
-  ["flying", "a890f0"],
-  ["psychic", "f85888"],
-  ["bug", "a8b820"],
-  ["dragon", "7038f8"],
-  ["water", "6890f0"],
-  ["ice", "98d8d8"],
-  ["poison", "a040a0"],
-  ["dark", "705848"],
-  ["ghost", "705898"],
-  ["fairy", "ffaec9"]
+const typeColorHexCodes: Map<string, string> = new Map([
+  ['normal', 'a8a878'],
+  ['grass', '78c850'],
+  ['ground', 'e0c068'],
+  ['fighting', 'c03028'],
+  ['rock', 'b8a038'],
+  ['steel', 'b8b8d0'],
+  ['fire', 'f08030'],
+  ['electric', 'f8d030'],
+  ['flying', 'a890f0'],
+  ['psychic', 'f85888'],
+  ['bug', 'a8b820'],
+  ['dragon', '7038f8'],
+  ['water', '6890f0'],
+  ['ice', '98d8d8'],
+  ['poison', 'a040a0'],
+  ['dark', '705848'],
+  ['ghost', '705898'],
+  ['fairy', 'ffaec9'],
 ]);
 
-export function getPokemonTypeColorByName(typeName: string)
-{
+export function getPokemonTypeColorByName(typeName: string) {
   return typeColorHexCodes.get(typeName);
 }
 
-export function getPokemonTypeColor(type: IPokemonType)
-{
+export function getPokemonTypeColor(type: IPokemonType) {
   return typeColorHexCodes.get(type.type.name);
 }

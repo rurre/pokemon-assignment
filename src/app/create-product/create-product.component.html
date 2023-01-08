@@ -1,14 +1,27 @@
 <form [formGroup]="mainForm">
   <div id="product-forms" formArrayName="products">
-    <div class="pokemon-product" *ngFor="let child of productsArray['controls']; index as index" [formGroupName]=index>
+    <div
+      class="pokemon-product"
+      *ngFor="let child of productsArray['controls']; index as index"
+      [formGroupName]="index"
+    >
       <mat-form-field>
-        <input formControlName="name" matInput placeholder="Name">
+        <input formControlName="name" matInput placeholder="Name" />
       </mat-form-field>
       <mat-form-field>
-        <input matInput formControlName='description' placeholder="Description">
+        <input
+          matInput
+          formControlName="description"
+          placeholder="Description"
+        />
       </mat-form-field>
       <mat-form-field>
-        <input matInput formControlName="price" placeholder="Amount" type="number">
+        <input
+          matInput
+          formControlName="price"
+          placeholder="Amount"
+          type="number"
+        />
         <span matPrefix>$&nbsp;</span>
         <span matSuffix>.00</span>
       </mat-form-field>
@@ -20,10 +33,14 @@
         </mat-select>
       </mat-form-field>
       <mat-form-field>
-        <input formControlName="imageUrl" matInput placeholder="Image URL">
+        <input formControlName="imageUrl" matInput placeholder="Image URL" />
       </mat-form-field>
       <mat-form-field>
-        <input formControlName="phoneNumber" matInput placeholder="Phone number">
+        <input
+          formControlName="phoneNumber"
+          matInput
+          placeholder="Phone number"
+        />
       </mat-form-field>
       <mat-form-field>
         <mat-select formControlName="select" placeholder="Phone Type">

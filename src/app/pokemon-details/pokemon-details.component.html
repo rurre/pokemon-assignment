@@ -1,11 +1,26 @@
 <div *ngIf="(errorMessage | async) == null; else hasError">
-  <div class="pokemon-info"
-    [ngStyle]="{'box-shadow': '0px 5px 20px ' + getTypeColorFromDetail(pokemonDetail | async)}">
-    <app-pokemon-statistics class="pokemon-info-card" [pokemonDetails]="pokemonDetail"></app-pokemon-statistics>
-    <app-pokemon-profile class="pokemon-info-card" [pokemonSpecies]="pokemonSpecies" [pokemonDetails]="pokemonDetail"></app-pokemon-profile>
-    <app-pokemon-evolution class="pokemon-info-card" [pokemonDetails]="pokemonDetail"></app-pokemon-evolution>
+  <div
+    class="pokemon-info"
+    [ngStyle]="{
+      'box-shadow':
+        '0px 5px 20px ' + getTypeColorFromDetail(pokemonDetail | async)
+    }"
+  >
+    <app-pokemon-statistics
+      class="pokemon-info-card"
+      [pokemonDetails]="pokemonDetail"
+    ></app-pokemon-statistics>
+    <app-pokemon-profile
+      class="pokemon-info-card"
+      [pokemonSpecies]="pokemonSpecies"
+      [pokemonDetails]="pokemonDetail"
+    ></app-pokemon-profile>
+    <app-pokemon-evolution
+      class="pokemon-info-card"
+      [pokemonDetails]="pokemonDetail"
+    ></app-pokemon-evolution>
   </div>
 </div>
 <ng-template #hasError>
-  <h1>{{errorMessage | async}}</h1>
+  <h1>{{ errorMessage | async }}</h1>
 </ng-template>

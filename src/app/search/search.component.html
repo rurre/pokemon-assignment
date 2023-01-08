@@ -1,9 +1,21 @@
 <mat-form-field class="search-bar">
-  <input matInput type="text" [formControl]="searchControl" (keydown.enter)="trySearch()" (input)="errorMsg = ''">
-  <button matSuffix type="button" mat-icon-button aria-label="search" (click)="trySearch()">
+  <input
+    matInput
+    type="text"
+    [formControl]="searchControl"
+    (keydown.enter)="trySearch()"
+    (input)="errorMsg = ''"
+  />
+  <button
+    matSuffix
+    type="button"
+    mat-icon-button
+    aria-label="search"
+    (click)="trySearch()"
+  >
     <mat-icon>search</mat-icon>
   </button>
   <mat-error *ngIf="errorMsg != ''">
-    {{errorMsg}}
+    {{ errorMsg }}
   </mat-error>
 </mat-form-field>

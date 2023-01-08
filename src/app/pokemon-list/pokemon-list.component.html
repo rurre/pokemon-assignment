@@ -1,25 +1,31 @@
-<div class="pokemon-list" *ngIf="!(isListLoading | async);else listIsLoading">
+<div class="pokemon-list" *ngIf="!(isListLoading | async); else listIsLoading">
   <mat-grid-list cols="7" rowHeight="1:1" gutterSize="10px">
-    <mat-grid-tile *ngFor="let mon of pokemonItems | async"
-      routerLink="/detail/{{mon.name}}" routerLinkActive="mat-accent"
+    <mat-grid-tile
+      *ngFor="let mon of pokemonItems | async"
+      routerLink="/detail/{{ mon.name }}"
+      routerLinkActive="mat-accent"
       class="pokemon-list-item hover-popup-shadow"
       colspan="1"
-      rowspan="1">
-      
-      <img *ngIf="mon.imageUrl != null;else loadingImage" alt="pokemon image" src="{{mon.imageUrl}}"/>
+      rowspan="1"
+    >
+      <img
+        *ngIf="mon.imageUrl != null; else loadingImage"
+        alt="pokemon image"
+        src="{{ mon.imageUrl }}"
+      />
       <ng-template #loadingImage>
-        <mat-progress-spinner
-          color="accent"
-          mode="indeterminate">
+        <mat-progress-spinner color="accent" mode="indeterminate">
         </mat-progress-spinner>
       </ng-template>
       <mat-grid-tile-footer>
-        {{mon.name | titlecase}}
+        {{ mon.name | titlecase }}
       </mat-grid-tile-footer>
     </mat-grid-tile>
   </mat-grid-list>
   <div class="list-nav-buttons">
-    <a mat-button (click)="getPrevPage()" [disabled]="!hasPrevPage()">Previous</a>
+    <a mat-button (click)="getPrevPage()" [disabled]="!hasPrevPage()"
+      >Previous</a
+    >
     <a mat-button (click)="getNextPage()" [disabled]="!hasNextPage()">Next</a>
   </div>
 </div>
@@ -27,6 +33,7 @@
   <mat-progress-spinner
     class="example-margin"
     color="accent"
-    mode="indeterminate">
+    mode="indeterminate"
+  >
   </mat-progress-spinner>
 </ng-template>

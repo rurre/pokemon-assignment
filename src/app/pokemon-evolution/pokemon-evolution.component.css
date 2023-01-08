@@ -1,12 +1,10 @@
-#evolution-content
-{
+#evolution-content {
   display: flex;
   justify-content: center;
   text-align: center;
 }
 
-.evolution-image
-{
+.evolution-image {
   height: 200px;
   width: 200px;
   font-size: 180px;

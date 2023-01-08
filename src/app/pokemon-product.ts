@@ -1,17 +1,9 @@
-export interface PokemonProduct
-{
+export interface PokemonProduct {
   name: string;
   description: string;
   price: number;
-  category: [
-    'electronics',
-    'clothing',
-    'blankets'
-  ];
+  category: ['electronics', 'clothing', 'blankets'];
   imageUrl: string;
   phoneNumber: string;
-  select: [
-    'mobile',
-    'landline'
-  ]
+  select: ['mobile', 'landline'];
 }

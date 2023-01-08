@@ -29,7 +29,7 @@ import { ProductListComponent } from './product-list/product-list.component';
     PageNotFoundComponent,
     PokemonDetailsComponent,
     CreateProductComponent,
-    ProductListComponent
+    ProductListComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,9 +38,9 @@ import { ProductListComponent } from './product-list/product-list.component';
     MaterialModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

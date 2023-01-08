@@ -4,9 +4,11 @@
   </mat-card-header>
   <mat-card-content>
     <table class="pokemon-stats-table" *ngIf="componentLoadedObs | async">
-      <tr *ngFor="let stat of (getProfileStats() | keyvalue);index as idx">
-        <td><b>{{stat.key | titlecase}}:</b></td>
-        <td>{{stat.value}}</td>
+      <tr *ngFor="let stat of getProfileStats() | keyvalue; index as idx">
+        <td>
+          <b>{{ stat.key | titlecase }}:</b>
+        </td>
+        <td>{{ stat.value }}</td>
       </tr>
     </table>
   </mat-card-content>

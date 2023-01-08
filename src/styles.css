@@ -1,12 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
-.flex-spacer { flex: auto; }
+.flex-spacer {
+  flex: auto;
+}
 
-.hover-popup-shadow:hover
-{
+.hover-popup-shadow:hover {
   transform: translateY(-3px);
   box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
   transition: all 0.2s ease-in-out;
